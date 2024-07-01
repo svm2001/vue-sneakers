@@ -25,7 +25,7 @@ onMounted(async () => {
         <CardList :items="favorites" is-favorites="true" />
     </div>
     <div v-else>
-        <div class="flex justify-center">
+        <div class="flex justify-center mt-8">
             <h1 class="text-3xl font-bold mb-10 flex gap-4 flex-col justify-center items-center">Список закладок пуст.
                 <img src="/img/emoji-2.png" width="30" height="30" alt="" style="max-height: 30px;">
                 Добавьте что-нибудь.</h1>
