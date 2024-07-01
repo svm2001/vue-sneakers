@@ -22,7 +22,7 @@ defineProps({
         <img
             v-if="onClickFavorite"
             class="absolute top-8 left-8 xl:top-5 xl:left-5"
-            :src="!isFavorite ? './img/like-1.svg' : './img/like-2.svg'"
+            :src="!isFavorite ? 'https://svgshare.com/i/17my.svg' : 'https://svgshare.com/i/17mz.svg'"
             alt="like"
             @click="onClickFavorite"
             :title="!isFavorite ? 'Добавить в закладки' : 'Убрать из закладок'"
@@ -39,7 +39,7 @@ defineProps({
             <img
                 v-if="onClickFavorite"
                 @click="onClickAdd"
-                :src="!isAdded ? './img/plus.svg' : './img/checked.svg'"
+                :src="!isAdded ? 'https://svgshare.com/i/17nf.svg' : 'https://svgshare.com/i/17mD.svg'"
                 :alt="!isAdded ? 'Plus' : 'Checked'"
                 :title="!isAdded ? 'Добавить в корзину' : 'Убрать из корзины'"
             />

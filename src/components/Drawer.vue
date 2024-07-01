@@ -54,13 +54,13 @@ const currentDate = new Date(),
                     v-if="!totalPrice && !orderId"
                     title="Корзина пустая"
                     description="Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
-                    image-url="./img/package-icon.png"
+                    image-url="https://i.ibb.co/231Qfgp/package-icon.png"
                 />
                 <InfoBlock
                     v-if="orderId"
                     title="Заказ оформлен!"
                     :description="`Ваш заказ №${orderId} от ${day}.${month}.${year} скоро будет передан курьерской доставке.`"
-                    image-url="./img/order-success-icon.png"
+                    image-url="https://i.ibb.co/DtgjSpf/order-success-icon.png"
                 />
             </div>
             <CartItemList />
