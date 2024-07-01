@@ -14,6 +14,7 @@ const closeDrawer = () => {
 const openDrawer = () => {
     drawerOpen.value = true
     disablePageScroll();
+    enablePageScroll(document.querySelector('.cartItemList'))
 }
 const totalPrice = computed(() => cart.value.reduce((total, item) => total + item.price, 0))
 const salePrice = computed(() => Math.round(totalPrice.value * 5) / 100)
