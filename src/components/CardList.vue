@@ -11,7 +11,7 @@ const emit = defineEmits(['addToFavorite', 'addToCart'])
 </script>
 
 <template>
-    <div class="grid grid-cols-4 gap-8" v-auto-animate>
+    <div class="md:grid-cols-2 xl:grid-cols-3 xl:gap-4 grid grid-cols-4 gap-8 cardList" v-auto-animate>
         <Card
             v-for="item in items"
             :image-url="item.imageUrl"
@@ -28,5 +28,17 @@ const emit = defineEmits(['addToFavorite', 'addToCart'])
 </template>
 
 <style scoped>
+
+@media (max-width: 1024px) {
+    .cardList {
+        grid-template-columns: 1fr 1fr!important;
+    }
+}
+
+@media (max-width: 576px) {
+    .cardList {
+        grid-template-columns: 1fr !important;
+    }
+}
 
 </style>

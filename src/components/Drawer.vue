@@ -46,7 +46,7 @@ const currentDate = new Date(),
         <div
             @click="() => closeDrawer()"
             class="fixed top-0 left-0 h-full w-full bg-black z-30 opacity-70"></div>
-        <div class="bg-white w-1/2 h-full fixed top-0 right-0 z-30 p-8 flex flex-col">
+        <div class="bg-white w-1/2 h-full fixed top-0 right-0 z-30 p-8 flex flex-col drawer">
             <DrawerHead />
 
             <div v-if="!totalPrice || orderId" class="flex h-full items-center m-auto">
@@ -64,26 +64,26 @@ const currentDate = new Date(),
                 />
             </div>
             <CartItemList />
-            <div v-if="totalPrice" class="flex flex-col gap-5 mt-10">
-<!--                <div class="flex gap-2">-->
-<!--                    <span>Цена без скидки:</span>-->
-<!--                    <div class="flex-1 border-b border-slate-300 border-dashed"></div>-->
-<!--                    <b>{{ totalPrice }} ₽</b>-->
-<!--                </div>-->
-<!--                <div class="flex gap-2">-->
-<!--                    <span>Скидка:</span>-->
-<!--                    <div class="flex-1 border-b border-slate-300 border-dashed"></div>-->
-<!--                    <b>5%</b>-->
-<!--                </div>-->
-<!--                <div class="flex gap-2">-->
-<!--                    <span>Сумма скидки:</span>-->
-<!--                    <div class="flex-1 border-b border-slate-300 border-dashed"></div>-->
-<!--                    <b>{{ salePrice }} ₽</b>-->
-<!--                </div>-->
+            <div v-if="totalPrice" class="flex flex-col gap-5 mt-10 drawer-bot">
+                <div class="flex gap-2">
+                    <span>Цена без скидки:</span>
+                    <div class="flex-1 border-b border-slate-300 border-dashed"></div>
+                    <b>{{ totalPrice }} ₽</b>
+                </div>
+                <div class="flex gap-2">
+                    <span>Скидка:</span>
+                    <div class="flex-1 border-b border-slate-300 border-dashed"></div>
+                    <b>5%</b>
+                </div>
+                <div class="flex gap-2">
+                    <span>Сумма скидки:</span>
+                    <div class="flex-1 border-b border-slate-300 border-dashed"></div>
+                    <b>{{ salePrice }} ₽</b>
+                </div>
                 <div class="flex gap-2">
                     <span>Итого:</span>
                     <div class="flex-1 border-b border-slate-300 border-dashed"></div>
-                    <b>{{ totalPrice }} ₽</b>
+                    <b>{{ totalPrice - salePrice }} ₽</b>
                 </div>
                 <button
                     @click="cleanCart"
@@ -97,4 +97,20 @@ const currentDate = new Date(),
     </div>
 
 </template>
+
+<style scoped>
+@media (max-width: 1024px) {
+    .drawer {
+        max-width: 100%;
+        min-width: 100%;
+        padding: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .drawer-bot {
+        gap: 8px;
+    }
+}
+</style>
 

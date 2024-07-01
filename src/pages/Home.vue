@@ -93,17 +93,17 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div class="flex justify-between items-center mb-8">
+    <div class="flex justify-between items-center mb-8 md:flex-col md:gap-4 md:items-start">
         <h1 class="text-3xl font-bold">Все кроссовки</h1>
-        <div class="flex items-center gap-4">
-            <div>
+        <div class="flex items-center gap-4 lg:flex-col lg:items-end md:items-start filters">
+            <div class="filters-item">
                 <select @change="onChangeSelect" class="py-3 px-3 border rounded-xl outline-none" name="" id="">
                     <option value="name">По названию</option>
                     <option value="-price">По цене (по убыванию)</option>
                     <option value="price">По цене (по возрастанию)</option>
                 </select>
             </div>
-            <div class="relative">
+            <div class="relative filters-item">
                 <img class="absolute left-3 top-3" src="@/assets/img/search.svg" alt="search">
                 <input
                     @input="onChangeSearchInput"
@@ -116,5 +116,23 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+
+@media (max-width: 768px) {
+    .filters {
+        align-items: flex-start!important;
+    }
+}
+
+@media (max-width: 576px) {
+    .filters {
+        input, select {
+            min-width: 100%!important;
+        }
+    }
+
+    .filters-item {
+        min-width: 100%;
+    }
+}
 
 </style>
