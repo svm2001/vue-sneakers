@@ -1,14 +1,21 @@
-<!--suppress JSValidateTypes -->
 <script setup>
-import Card from "@/components/Card.vue";
+import { defineProps, defineEmits } from 'vue';
+import Card from '@/components/Card.vue';
 
-defineProps({
+const props = defineProps({
     items: Array,
     isFavorites: Boolean,
     qty: Number,
-})
+});
+const emits = defineEmits(['addToCart', 'addToFavorite', 'removeFromCart']);
 
-const emit = defineEmits(['addToFavorite', 'addToCart'])
+const handleAddToCart = (item) => {
+    emits('addToCart', item);
+}
+
+const handleRemoveFromCart = (item) => {
+    emits('removeFromCart', item);
+}
 
 </script>
 
@@ -16,20 +23,11 @@ const emit = defineEmits(['addToFavorite', 'addToCart'])
     <div class="grid grid-cols-4 gap-8" v-auto-animate>
         <Card
             v-for="item in items"
-            :image-url="item.imageUrl"
             :key="item.id"
-            :id="item.id"
-            :title="item.title"
-            :price="item.price"
-            :qty="item.qty"
-            :isAdded="item.isAdded"
-            :isFavorite="item.isFavorite"
-            :onClickFavorite="isFavorites ? null : () => emit('addToFavorite', item)"
-            :onClickAdd="isFavorites ? null : () => emit('addToCart', item, qty)"
+            :item="item"
+            @addToCart="handleAddToCart"
+            @removeFromCart="handleRemoveFromCart"
+            :onClickFavorite="isFavorites ? null : () => emits('addToFavorite', item)"
         />
     </div>
 </template>
-
-<style scoped>
-
-</style>

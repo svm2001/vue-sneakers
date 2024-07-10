@@ -1,11 +1,20 @@
 <script setup>
-    const emit = defineEmits(['openDrawer']);
-    defineProps({
-        totalPrice: Number
-    })
+import { defineProps, defineEmits } from 'vue';
+
+const props = defineProps({
+    totalItems: Number,
+    totalPrice: Number
+});
+const emits = defineEmits(['openDrawer']);
+
+const handleOpenDrawer = () => {
+    emits('openDrawer');
+}
+
 </script>
 
 <template>
+
     <header class="sticky top-0 z-20 bg-white rounded-2xl flex items-center justify-between px-8 py-6 border-b border-slate-200"
             style="box-shadow: rgb(66, 184, 131, .5) 0 5px 14px 1px"
     >
@@ -19,9 +28,9 @@
             </div>
         </router-link>
         <ul class="flex items-center gap-8">
-            <li @click="() => emit('openDrawer')" class="flex items-center gap-3 cursor-pointer text-gray-600 hover:text-black">
+            <li @click="handleOpenDrawer" class="flex items-center gap-3 cursor-pointer text-gray-600 hover:text-black">
                 <img src="@/assets/img/cart.svg" alt="cart">
-                <b>{{ totalPrice }} ₽</b>
+                <b>{{ totalItems }} шт.</b>
             </li>
             <router-link to="/favorites">
                 <li class="flex items-center gap-3 cursor-pointer text-gray-600 hover:text-black">
@@ -37,8 +46,9 @@
             </router-link>
         </ul>
     </header>
+
+<!--    <header>-->
+<!--        <p>Total Items: {{ totalItems }}</p>-->
+<!--        <p>Total Price: {{ totalPrice }} ₽</p>-->
+<!--    </header>-->
 </template>
-
-<style scoped>
-
-</style>

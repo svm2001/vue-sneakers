@@ -1,22 +1,27 @@
 <script setup>
-import CartItem from "@/components/CartItem.vue";
-import {inject} from "vue";
+import { defineProps } from 'vue';
+import CartItem from '@/components/CartItem.vue';
 
-const { cart, removeFromCart } = inject('cart')
+const props = defineProps({
+    items: Array
+});
+
+import {inject} from "vue";
+const { removeFromCart, removeFromCartAll } = inject('cart')
+
 </script>
 
 <template>
-    <div
-        v-auto-animate
-        class="flex flex-col gap-4 flex-1"
-        style="overflow-y: auto">
+    <div v-auto-animate
+         class="flex flex-col gap-4 flex-1"
+         style="overflow-y: auto">
         <CartItem
-            :title="item.title"
-            :price="item.price"
-            :image-url="item.imageUrl"
-            v-for="item in cart"
+            v-for="item in items"
             :key="item.id"
+            :item="item"
+            :image-url="item.imageUrl"
             @onClickRemove="() => removeFromCart(item)"
+            @onClickRemoveAll="() => removeFromCartAll(item)"
         />
     </div>
 </template>

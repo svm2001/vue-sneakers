@@ -1,42 +1,45 @@
 <script setup>
-
 import DrawerHead from "@/components/DrawerHead.vue";
-import CartItemList from "@/components/CartItemList.vue";
 import InfoBlock from "@/components/InfoBlock.vue";
 import axios from "axios";
-import {inject, ref} from "vue";
+import {computed, inject, ref} from "vue";
+import CartItemList from '@/components/CartItemList.vue';
 
 const props = defineProps({
     totalPrice: Number,
-    salePrice: Number,
+    totalItems: Number,
 })
+
 const orderId = ref(null)
-const { cart } = inject('cart')
-const { closeDrawer } = inject('cart')
-const createOrder = async () => {
-    try {
-        const { data } = await axios.post(`https://34402a52ffa89b7c.mokky.dev/orders`, {
-            items: cart.value,
-            totalPrice: props.totalPrice - props.salePrice
-        })
 
-        cart.value = []
-        orderId.value = data.id
-
-    } catch (e) {
-        console.error(e)
-    }
-}
-
-const cleanCart = () => {
-    cart.value = []
-}
+const { cart, totalPrice, totalItems, closeDrawer } = inject('cart');
 
 const currentDate = new Date(),
     day = currentDate.getDate(),
     year = currentDate.getFullYear(),
     month = currentDate.getMonth() >= 10 ? currentDate.getMonth() + 1 : `0${currentDate.getMonth() + 1}`
 
+const resetValues = () => {
+    totalItems._value = 0
+    totalPrice._value = 0
+    cart.clear()
+}
+
+const cleanCart = () => {
+    resetValues()
+}
+
+const createOrder = async () => {
+    try {
+        const { data } = await axios.post(`https://34402a52ffa89b7c.mokky.dev/orders`, {
+            items: cart.value
+        })
+        orderId.value = data.id
+        resetValues()
+    } catch (e) {
+        console.error(e)
+    }
+}
 
 </script>
 
@@ -63,7 +66,7 @@ const currentDate = new Date(),
                     image-url="./img/order-success-icon.png"
                 />
             </div>
-            <CartItemList />
+            <CartItemList :items="Array.from(cart.values())" />
             <div v-if="totalPrice" class="flex flex-col gap-5 mt-10">
 
                 <div class="flex gap-2">
@@ -83,4 +86,3 @@ const currentDate = new Date(),
     </div>
 
 </template>
-
