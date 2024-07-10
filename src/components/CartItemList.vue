@@ -8,7 +8,7 @@ const { cart, removeFromCart } = inject('cart')
 <template>
     <div
         v-auto-animate
-        class="flex flex-col gap-4 flex-1 cartItemList"
+        class="flex flex-col gap-4 flex-1"
         style="overflow-y: auto">
         <CartItem
             :title="item.title"

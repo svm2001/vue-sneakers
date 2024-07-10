@@ -5,14 +5,7 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      screens: {
-        'sm': {'max': '576'},
-        'md': {'max': '768px'},
-        'lg': {'max': '1024px'},
-        'xl': {'max': '1400px'},
-      }
-    },
+    extend: {},
   },
   plugins: [],
 }
