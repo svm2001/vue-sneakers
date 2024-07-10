@@ -1,6 +1,6 @@
 <script setup>
 import DrawerHead from "@/components/DrawerHead.vue";
-import InfoBlock from "@/components/InfoBlock.vue";
+import InfoBlock from "@/components/infoBlock.vue";
 import axios from "axios";
 import {computed, inject, ref} from "vue";
 import CartItemList from '@/components/CartItemList.vue';
