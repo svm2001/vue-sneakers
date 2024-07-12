@@ -39,7 +39,7 @@ const handleRemoveFromCart = () => {
         <img
             v-if="onClickFavorite"
             class="absolute top-8 left-8"
-            :src="!item.isFavorite ? '/img/like-1.svg' : '/img/like-2.svg'"
+            :src="!item.isFavorite ? '@/assets/img/like-1.svg' : '@/assets/img/like-2.svg'"
             alt="like"
             @click="onClickFavorite"
             :title="!item.isFavorite ? 'Добавить в закладки' : 'Убрать из закладок'"
